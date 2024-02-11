@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Flask To-Do List</h1>
+
+    <!-- Unordered list with an id-->
+    <ul id="todoList">
+        <!-- This is a Jinja2 template loop that iterates over the todos list passed from the Flask application. It dynamically generates list items (<li>) for each to-do item.-->
+        {% for todo in todos %}
+            <li>
+                <span class="todoText">{{ todo }}</span>
+                <button class="completeButton">Complete</button>
+                <button class="removeButton">Remove</button>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- This is a form that allows users to add new to-do items. It has an id addForm for easy targeting with JavaScript and a post method to submit the form data to the server. -->
+    <form id="addForm" action="{{ url_for('add_todo') }}" method="post">
+        <!-- This is a label for the input field. It improves accessibility and provides a visual indication of the input's purpose.-->
+        <label for="todo">Add a new to-do:</label>
+
+        <!-- This is a text input field where users can enter new to-do items. The required attribute ensures that the field must be filled in before submitting the form. -->
+        <input type="text" id="todo" name="todo" required>
+
+        <!-- This is a submit button that submits the form when clicked, triggering the addition of a new to-do item.-->
+        <button type="submit">Add</button>
+    </form>
+
+    <a href="{{ url_for('calculator') }}"><button>Go to Calculator</button></a>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

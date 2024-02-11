@@ -1,0 +1,38 @@
+<!-- templates/calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+
+    <form>
+        <label for="num1">Number 1:</label>
+        <input type="number" id="num1" name="num1" required>
+
+        <label for="num2">Number 2:</label>
+        <input type="number" id="num2" name="num2" required>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+
+        <p id="result">Result: </p>
+    </form>
+
+    <a href="{{ url_for('index') }}">Back to To-Do List</a>
+
+    <script>
+        function calculate() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+
+            var result = num1 + num2;
+
+            document.getElementById('result').innerText = 'Result: ' + result;
+        }
+    </script>
+</body>
+</html>
